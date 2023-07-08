@@ -1,11 +1,12 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {TodosType} from "../App";
+
 
 export type PropsType = {
     todos: Array<TodosType>
     addTodo: (value: string) => void
 }
-export const Todolist = ({todos,addTodo }: PropsType) => {
+export const Todolist = ({todos, addTodo}: PropsType) => {
     const [value, setValue] = useState<string>('')
 
     const onChangeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -17,6 +18,11 @@ export const Todolist = ({todos,addTodo }: PropsType) => {
         setValue('')
     }
 
+    const addTodoKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            addTodoHandler()
+        }
+    }
 
 
     const result = todos.map((todo) => {
@@ -30,8 +36,15 @@ export const Todolist = ({todos,addTodo }: PropsType) => {
 
     return (
         <div>
-            <input type="text"  value={value} onChange={onChangeEventHandler}/>
-            <button onClick={addTodoHandler}>+</button>
+            <input
+                type="text"
+                value={value}
+                onChange={onChangeEventHandler}
+                onKeyPress={addTodoKeyPressHandler}
+            />
+            <button
+                onClick={addTodoHandler}>+
+            </button>
             <ul>
                 {result}
             </ul>
