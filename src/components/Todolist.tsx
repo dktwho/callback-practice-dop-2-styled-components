@@ -12,6 +12,11 @@ export const Todolist = ({todos,addTodo }: PropsType) => {
         setValue(e.currentTarget.value)
     }
 
+    const addTodoHandler = () => {
+        addTodo(value)
+        setValue('')
+    }
+
 
 
     const result = todos.map((todo) => {
@@ -26,7 +31,7 @@ export const Todolist = ({todos,addTodo }: PropsType) => {
     return (
         <div>
             <input type="text"  value={value} onChange={onChangeEventHandler}/>
-            <button onClick={() => addTodo(value)}>+</button>
+            <button onClick={addTodoHandler}>+</button>
             <ul>
                 {result}
             </ul>

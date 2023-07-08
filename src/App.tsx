@@ -24,6 +24,7 @@ function App() {
     const addTodo = (value: string) => {
         let newTodo = {userId: v4(), id: v4(), title: value, completed: false}
         setTodos([newTodo, ...todos])
+
     }
 
 
