@@ -3,7 +3,7 @@ import './App.css';
 import {v4} from "uuid";
 import {Todolist} from "./components/Todolist";
 
-type TodosType = {
+export type TodosType = {
     userId: string,
     id: string,
     title: string
@@ -24,7 +24,7 @@ function App() {
     console.log(todos)
     return (
         <div className="App">
-
+            <Todolist todos={todos} />
         </div>
     );
 }
