@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {TodosType} from "../App";
 
 export type PropsType = {
     todos: Array<TodosType>
+    addTodo: () => void
 }
-export const Todolist = ({todos}: PropsType) => {
+export const Todolist = ({todos,addTodo }: PropsType) => {
+    const [value, setValue] = useState<string>('')
+
+
+    const addTodoHandler = () => {
+        addTodo()
+    }
 
     const result = todos.map((todo) => {
         return (
@@ -15,12 +22,13 @@ export const Todolist = ({todos}: PropsType) => {
         )
     })
 
-
     return (
         <div>
-            <ol>
+            <input type="text"  value={value} onChange={() => {}}/>
+            <button onClick={addTodoHandler}>+</button>
+            <ul>
                 {result}
-            </ol>
+            </ul>
         </div>
     );
 };

@@ -21,10 +21,15 @@ function App() {
 
     let [todos, setTodos] = useState<TodosType[]>(data)
 
+    const addTodo = () => {
+        let newTodo = {userId: v4(), id: v4(), title: 'new-new', completed: false}
+        setTodos([newTodo, ...todos])
+    }
+
     console.log(todos)
     return (
         <div className="App">
-            <Todolist todos={todos} />
+            <Todolist todos={todos} addTodo={addTodo}/>
         </div>
     );
 }
