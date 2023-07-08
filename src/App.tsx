@@ -10,6 +10,8 @@ export type TodosType = {
     completed: boolean
 }
 
+export type FilterValuesType = 'all' | true | false
+
 function App() {
     let data = [
         {userId: v4(), id: v4(), title: 'HTML', completed: true},
@@ -20,17 +22,38 @@ function App() {
     ]
 
     let [todos, setTodos] = useState<TodosType[]>(data)
+    let [filter, setFilter] = useState<FilterValuesType>('all')
 
     const addTodo = (value: string) => {
         let newTodo = {userId: v4(), id: v4(), title: value, completed: false}
         setTodos([newTodo, ...todos])
-
     }
+
+    const removeTodo = (id: string) => {
+        setTodos(todos.filter((t) => t.id !== id))
+    }
+
+    let taskForTodoList = todos;
+    const filterTodos = (value: FilterValuesType) => {
+        setFilter(value)
+    }
+
+    if (filter === true) {
+        taskForTodoList = todos.filter(t => t.completed === true)
+    }
+    if (filter === false) {
+        taskForTodoList = todos.filter(t => t.completed === false)
+    }
+    if (filter === 'all') {
+        taskForTodoList = todos.filter(t => t)
+    }
+
+
 
 
     return (
         <div className="App">
-            <Todolist todos={todos} addTodo={addTodo}/>
+            <Todolist todos={taskForTodoList} addTodo={addTodo} removeTodo={removeTodo} filterTodos={filterTodos}/>
         </div>
     );
 }
