@@ -1,5 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType, TodosType} from "../App";
+import Button from "./Button";
 
 
 export type PropsType = {
@@ -18,6 +19,7 @@ export const Todolist = ({todos, addTodo, removeTodo, filterTodos}: PropsType) =
 
     const addTodoHandler = () => {
         addTodo(value)
+        onAllFilterHandler()
         setValue('')
     }
 
@@ -50,7 +52,7 @@ export const Todolist = ({todos, addTodo, removeTodo, filterTodos}: PropsType) =
             <li key={todo.id}>
                 <span>{todo.title}</span>
                 <input type="checkbox" checked={todo.completed} readOnly/>
-                <button onClick={removeTaskHandler}>x</button>
+                <Button callBack={() => removeTaskHandler()} name={'x'}/>
             </li>
         )
     })
@@ -63,15 +65,14 @@ export const Todolist = ({todos, addTodo, removeTodo, filterTodos}: PropsType) =
                 onChange={onChangeEventHandler}
                 onKeyPress={addTodoKeyPressHandler}
             />
-            <button
-                onClick={addTodoHandler}>+
-            </button>
+            <Button callBack={() => addTodoHandler()} name={'+'}/>
             <ul>
                 {result}
             </ul>
-            <button onClick={onCompletedFilterHandler}>Completed</button>
-            <button onClick={onUnCompletedFilterHandler}>Not completed</button>
-            <button onClick={onAllFilterHandler}>All</button>
+            <Button callBack={() => onCompletedFilterHandler()} name={'Completed'}/>
+            <Button callBack={() => onUnCompletedFilterHandler()} name={'Not completed'}/>
+            <Button callBack={() => onAllFilterHandler()} name={'All'}/>
+
         </div>
     );
 };
