@@ -21,12 +21,12 @@ function App() {
 
     let [todos, setTodos] = useState<TodosType[]>(data)
 
-    const addTodo = () => {
-        let newTodo = {userId: v4(), id: v4(), title: 'new-new', completed: false}
+    const addTodo = (value: string) => {
+        let newTodo = {userId: v4(), id: v4(), title: value, completed: false}
         setTodos([newTodo, ...todos])
     }
 
-    console.log(todos)
+
     return (
         <div className="App">
             <Todolist todos={todos} addTodo={addTodo}/>

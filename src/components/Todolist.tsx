@@ -1,17 +1,18 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {TodosType} from "../App";
 
 export type PropsType = {
     todos: Array<TodosType>
-    addTodo: () => void
+    addTodo: (value: string) => void
 }
 export const Todolist = ({todos,addTodo }: PropsType) => {
     const [value, setValue] = useState<string>('')
 
-
-    const addTodoHandler = () => {
-        addTodo()
+    const onChangeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setValue(e.currentTarget.value)
     }
+
+
 
     const result = todos.map((todo) => {
         return (
@@ -24,8 +25,8 @@ export const Todolist = ({todos,addTodo }: PropsType) => {
 
     return (
         <div>
-            <input type="text"  value={value} onChange={() => {}}/>
-            <button onClick={addTodoHandler}>+</button>
+            <input type="text"  value={value} onChange={onChangeEventHandler}/>
+            <button onClick={() => addTodo(value)}>+</button>
             <ul>
                 {result}
             </ul>
