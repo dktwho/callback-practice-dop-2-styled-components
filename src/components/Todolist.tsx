@@ -18,7 +18,10 @@ export const Todolist = ({todos, addTodo, removeTodo, filterTodos}: PropsType) =
     }
 
     const addTodoHandler = () => {
-        addTodo(value)
+        if (value === '') {
+            return
+        }
+        addTodo(value.trim())
         onAllFilterHandler()
         setValue('')
     }
@@ -72,7 +75,6 @@ export const Todolist = ({todos, addTodo, removeTodo, filterTodos}: PropsType) =
             <Button callBack={() => onCompletedFilterHandler()} name={'Completed'}/>
             <Button callBack={() => onUnCompletedFilterHandler()} name={'Not completed'}/>
             <Button callBack={() => onAllFilterHandler()} name={'All'}/>
-
         </div>
     );
 };
