@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType, TodosType} from "../App";
-import Button from "./Button";
+import {Button} from "./Button";
+import styled from "styled-components";
 
 
 export type PropsType = {
@@ -8,8 +9,9 @@ export type PropsType = {
     addTodo: (value: string) => void
     removeTodo: (id: string) => void
     filterTodos: (value: FilterValuesType) => void
+    filter: FilterValuesType
 }
-export const Todolist = ({todos, addTodo, removeTodo, filterTodos}: PropsType) => {
+export const Todolist = ({todos, addTodo, removeTodo, filterTodos, filter}: PropsType) => {
     const [value, setValue] = useState<string>('')
 
 
@@ -44,9 +46,7 @@ export const Todolist = ({todos, addTodo, removeTodo, filterTodos}: PropsType) =
         filterTodos(false)
     }
 
-
     const result = todos.map((todo) => {
-
         const removeTaskHandler = () => {
             removeTodo(todo.id)
         }
@@ -60,6 +60,7 @@ export const Todolist = ({todos, addTodo, removeTodo, filterTodos}: PropsType) =
         )
     })
 
+
     return (
         <div>
             <input
@@ -72,10 +73,11 @@ export const Todolist = ({todos, addTodo, removeTodo, filterTodos}: PropsType) =
             <ul>
                 {result}
             </ul>
+            <Button callBack={() => onAllFilterHandler()} name={'All'}/>
             <Button callBack={() => onCompletedFilterHandler()} name={'Completed'}/>
             <Button callBack={() => onUnCompletedFilterHandler()} name={'Not completed'}/>
-            <Button callBack={() => onAllFilterHandler()} name={'All'}/>
         </div>
     );
 };
+
 

@@ -53,7 +53,7 @@ function App() {
 
     return (
         <div className="App">
-            <Todolist todos={taskForTodoList} addTodo={addTodo} removeTodo={removeTodo} filterTodos={filterTodos}/>
+            <Todolist todos={taskForTodoList} addTodo={addTodo} removeTodo={removeTodo} filterTodos={filterTodos} filter={filter}/>
         </div>
     );
 }

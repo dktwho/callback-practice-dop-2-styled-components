@@ -1,18 +1,25 @@
 import React from 'react';
+import styled from "styled-components";
 
 type ButtonPropsType = {
     name: string
     callBack: () => void
 }
-const Button = ({name, callBack}: ButtonPropsType) => {
-
+export const Button = ({name, callBack}: ButtonPropsType) => {
     const callBackHandler = () => {
         callBack()
     }
-
     return (
-        <button onClick={callBackHandler}>{name}</button>
+        <Btn onClick={callBackHandler}>{name}</Btn>
     );
 };
 
-export default Button;
+
+export const Btn = styled.button`
+  background-color: darkgray;
+  border-radius: 1px;
+  border: 2px solid gray;
+  color: gray;
+  margin: 1px;
+  color: black;
+`
